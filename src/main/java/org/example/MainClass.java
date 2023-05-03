@@ -5,14 +5,14 @@ import java.util.List;
 public class MainClass
 {
     private int periodInYears;
-    private double futureValue;
 
-    public MainClass(double presentValue, double interestRate, int periodInYears, double futureValue) {
-        this.periodInYears = periodInYears;
-        this.futureValue = futureValue;
+    private double presentValue;
+    private double interestRate;
+
+    public MainClass() {
     }
 
-    public static double calculateFv(double pv, double ir, int period)
+    public double calculateFv(double pv, double ir, int period)
     {
         double convertedRate = ir / 100; //converting interest rate from percentage
 
@@ -21,11 +21,16 @@ public class MainClass
         return  fv;
     }
 
-    public List<MainClass> listFutureValues()
+    public List<MainClass> listFutureValues(double pv, double ir, int period)
     {
+        MainClass fv = new MainClass();
+        int displayPeriod = 1;
+
         for (int i =0; i<100; i++)
         {
-
+            System.out.println("Year : " + displayPeriod + ", Fv : " + fv.calculateFv(pv, ir, period));
+            period++;
+            displayPeriod++;
         }
 
         return  null;
@@ -33,8 +38,7 @@ public class MainClass
 
     public static void main(String[] args)
     {
-        double val = calculateFv(1050, 6.5, 4);
-
-        System.out.println(val);
+        MainClass mc = new MainClass();
+        System.out.println(mc.listFutureValues(2000, 6.1, 1));
     }
 }
