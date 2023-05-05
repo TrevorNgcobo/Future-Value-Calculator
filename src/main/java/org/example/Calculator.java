@@ -5,15 +5,10 @@ import java.util.List;
 
 public class Calculator
 {
-    double calculateFV(double presentV, double intRate, int y)
+    double calculateFV(double pv, double intRate, int years)
     {
-      double pv = presentV;
-      double ir = intRate;
       double convertedRate = intRate/100; //Convert interest rate from percentage to decimal
-      int years = y;
-      double result;
-
-      result = pv * Math.pow((1+convertedRate), years); //Formal equation FV = PV(1+r)^n) where n=years; r= interest rate
+      double result = pv * Math.pow((1+convertedRate), years); //Formal equation FV = PV(1+r)^n) where n=years; r= interest rate
       return result;
     }
 
@@ -38,6 +33,5 @@ public class Calculator
         {
             System.out.println("Year : " + fv.getYears() + ", " + "Future Value : " + fv.getFutureValue());
         }
-
     }
 }
