@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Calculator
 {
-    double calculateFV(double pv, double intRate, int years)
+    FututeValue calculateFV(double pv, double intRate, int years)
     {
-      double convertedRate = intRate/100; //Convert interest rate from percentage to decimal
-      double result = pv * Math.pow((1+convertedRate), years); //Formal equation FV = PV(1+r)^n) where n=years; r= interest rate
-      return result;
+        double convertedRate = intRate/100; //Convert interest rate from percentage to decimal
+        double result = pv * Math.pow((1+convertedRate), years); //Formal equation FV = PV(1+r)^n where n=years; r= interest rate
+        return new FututeValue(years, pv, result, intRate);
     }
 
     List<FututeValue> fvList(double presentV, double intRate, int y)
@@ -18,16 +18,15 @@ public class Calculator
 
         for (int i =0; i<y; i++)
         {
-            double fvCalculated = calculateFV(presentV, intRate, i+1);
-            FututeValue fv = new FututeValue(i+1, presentV,fvCalculated,intRate);
+            FututeValue fv = calculateFV(presentV, intRate, i+1);
             list.add(fv);
         }
         return  list;
     }
 
     public static void main(String[] args) {
-        Calculator cltr = new Calculator();
-        List<FututeValue> lst = cltr.fvList(23000, 6.4, 3);
+
+        List<FututeValue> lst = new Calculator().fvList(450000, 7.8, 2);
 
         for(FututeValue fv : lst)
         {
